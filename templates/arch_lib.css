@@ -1,0 +1,68 @@
+/* ==== tianhong-html-deck : native architecture-diagram component library ====
+   Paste into the deck's EXTRA_CSS (shell.html holds house style; this block is
+   added per-project by the assembler). Dark-theme tuned (uses --cyan/--gold/--muted).
+   Components: .arch .arow .apanel .ptitle .asub .agrid .chip .lrow .rail .fnode .farr .band .note
+   Modifiers:  .arch.loose | .arch.mid | .chip.gold/.solid/.t | .rail.gold | .fnode.gold/.solid
+               .band.cyan | .asub.cyan | .ptitle.gold | .agrid.rowfill | .apanel.spread | .arow.fill */
+
+.arch{display:flex;flex-direction:column;gap:9px;height:100%;min-width:0}
+.arow{display:flex;gap:9px;min-width:0}
+.arow.fill{flex:1}
+.apanel{border:1px solid rgba(149,186,201,.30);background:rgba(12,34,53,.55);border-radius:10px;padding:9px;min-width:0;display:flex;flex-direction:column;gap:7px}
+.apanel>.ptitle{align-self:center;font-size:15px;color:var(--cyan);background:rgba(84,207,221,.10);border:1px solid rgba(100,225,232,.35);padding:4px 16px;border-radius:5px;font-weight:600;letter-spacing:1px;white-space:nowrap}
+.apanel>.ptitle.gold{color:var(--gold);background:rgba(216,183,125,.10);border-color:rgba(216,183,125,.40)}
+.asub{font-size:13.5px;color:var(--gold);text-align:center;font-weight:600;letter-spacing:1px;border-bottom:1px solid rgba(216,183,125,.25);padding-bottom:4px}
+.asub.cyan{color:var(--cyan);border-bottom-color:rgba(100,225,232,.25)}
+.agrid{display:grid;gap:5px;min-width:0}
+.chip{font-size:12.5px;line-height:1.3;padding:5px 4px;text-align:center;background:rgba(100,225,232,.08);border:1px solid rgba(100,225,232,.28);border-radius:4px;color:#cfe9ee;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chip.gold{background:rgba(216,183,125,.10);border-color:rgba(216,183,125,.35);color:#e8d6b0}
+.chip.solid{background:rgba(100,225,232,.85);border-color:transparent;color:#06202a;font-weight:600}
+.lrow{display:flex;align-items:stretch;gap:7px;min-width:0}
+.lrow>.ll{flex:0 0 70px;display:flex;align-items:center;justify-content:flex-end;font-size:12.5px;color:var(--muted);text-align:right;line-height:1.3}
+.lrow>.agrid{flex:1}
+.rail{flex:0 0 32px;writing-mode:vertical-rl;text-align:center;font-size:15px;letter-spacing:4px;color:var(--cyan);background:rgba(100,225,232,.08);border:1px solid rgba(100,225,232,.30);border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:600}
+.rail.gold{color:var(--gold);background:rgba(216,183,125,.08);border-color:rgba(216,183,125,.35)}
+.fnode{font-size:14px;padding:7px 12px;text-align:center;background:rgba(100,225,232,.10);border:1px solid rgba(100,225,232,.40);border-radius:6px;color:#dbf4f7;font-weight:600;white-space:nowrap}
+.fnode.gold{background:rgba(216,183,125,.12);border-color:rgba(216,183,125,.45);color:#ecd9b4}
+.fnode.solid{background:linear-gradient(135deg,rgba(100,225,232,.9),rgba(11,127,142,.9));border-color:transparent;color:#04202a}
+.farr{display:flex;align-items:center;color:var(--cyan);font-size:15px;padding:0 2px}
+.band{border:1px solid rgba(216,183,125,.40);background:rgba(216,183,125,.10);border-radius:8px;padding:9px 14px;text-align:center;font-size:16px;color:#ecd9b4;font-weight:600;letter-spacing:1px}
+.band.cyan{border-color:rgba(100,225,232,.40);background:rgba(100,225,232,.10);color:#dbf4f7}
+.note{font-size:11.5px;line-height:1.45;color:var(--muted)}
+
+/* density tier: sparse pages (<=3 content rows) — big type, rows spread to fill stage */
+.arch.loose{justify-content:space-between}
+.arch.loose .agrid{gap:9px}
+.arch.loose .chip{font-size:15px;padding:10px 6px}
+.arch.loose .fnode{font-size:17px;padding:11px 18px}
+.arch.loose .ptitle{font-size:17px;padding:6px 20px}
+.arch.loose .asub{font-size:15px}
+.arch.loose .note{font-size:15.5px;line-height:1.95;text-align:justify}
+.arch.loose .band{font-size:18px;padding:12px 16px}
+
+/* density tier: dense pages (4+ stacked rows / 3+ rail rows) — compact but legible (>=11.5px) */
+.arch.mid{gap:5px}
+.arch.mid .apanel{gap:5px;padding:7px}
+.arch.mid .agrid{gap:4px}
+.arch.mid .chip{font-size:12.5px;padding:4px 3px}
+.arch.mid .ptitle{font-size:14.5px;padding:4px 14px}
+.arch.mid .asub{font-size:13px;padding-bottom:3px}
+.arch.mid .rail{flex:0 0 28px;font-size:13px;letter-spacing:2px}
+.arch.mid .lrow>.ll{font-size:12px;flex:0 0 68px}
+.arch.mid .fnode{font-size:13px;padding:5px 8px}
+.arch.mid .band{font-size:14px;padding:5px 10px}
+.arch.mid .note{font-size:12.5px;line-height:1.6}
+
+/* small wrapping chip for narrow many-chip columns — prevents ellipsis truncation */
+.chip.t{font-size:11.5px;white-space:normal;line-height:1.2;padding:3px 2px}
+
+/* horizontal fill: chip grid inside a rail row spans remaining width, stays content-height */
+.agrid.rowfill{flex:1;min-width:0}
+.arow>.agrid.rowfill{align-self:center}
+
+/* vertical fill: distribute a panel's children over its full height (kills dead column bottoms) */
+.apanel.spread{justify-content:space-between}
+.apanel.spread>.agrid{flex:1;align-content:space-evenly}
+.apanel.spread .apanel{flex:1}
+.apanel.spread>.arow>div{display:flex;flex-direction:column}
+.apanel.spread>.arow .agrid{flex:1;align-content:space-evenly}
