@@ -221,3 +221,10 @@
 - 崩溃残留：probe 崩后 chrome_shot/SingletonLock 挡下次启动 → pkill -f "chrome_sho[t]" + rm SingletonLock（再现一次）。
 - 主题双写：播放器深色默认样式放 EXTRA_CSS（cyan 描边/徽章），MASTER_SWAP 自动把 cyan 族换红；MASTER_CSS 只补 .vplayer 白卡底/灰发丝边与 .vbar 文字色（视频黑面上的徽章/提示 pill 两主题共用深色样式，不动）。
 - 轻量版（novideo flag）：跳过 mp4 注册（144MB→1.4MB）；body 手术＝删 <video> 标签、.vstage 加 .vposter（深色 radial 海报底＋::before 光晕＋.vdur 时长 pill 右上＋.vhint 落底 18px 因无原生控制条）、提示/说明文字改"轻量版 · 视频未内嵌 / 播放请用含视频版"；VIDEO_JS 无 video 分支点击调 shell 全局 tell() 弹 toast；文件名后缀 -无视频（与 -母版版 可叠加）。审计 MUST 的"视频"字靠 vbar 标题保住。
+
+## 母版页眉 Logo 换标（天弘技术→天弘基金，2026-10-15）
+- 换标三处联动：`master_assets/logo_solo.png`（技能内 `templates/master/logo_solo.png` 同换）+ assemble 的 mhead `alt` 文本 + `.mband` right 留白（旧标 472×152 @h53 宽 165px 配 right:214；新标 489×120 @h53 宽 216px 须 right:264，否则 Logo 左缘压进灰带 39px）。改完四模版全 rebuild + 逐份 audit + 截图放大页眉右区核验间隙。
+- 结尾页红底是整张烘焙位图 `closing_red.png`（白色组合标识在内），换品牌≠换资产，须 PIL 重构图；owner 本次拍板保留「天弘基金｜天弘技术」组合不动——动结尾页前先问。
+- 抽 assemble 产物里单个资产：必须 regex `"名字":"data:image/\w+;base64,([^"]+)"` 定点取；从 `<img data-asset=...>` 位置往后找下一个 `base64,` 会误抓注册表里相邻条目（两次抓到 brand_logo 当成 closing_red）。
+- 7MB 单文件 HTML 上跑 `[^{}]*\.mhead[^{}]*\{...` 这类跨块 regex 会灾难性回溯超时（Bash 2min 被杀）；改用 `str.find` 定位 + 固定窗口切片看上下文。
+- cover/chapter/closing 页 chrome 隐藏靠 `#stage:has(.slide.X.active) .mhead{display:none}`——截图这几页看不到页眉是设计如此，别当 bug 修。

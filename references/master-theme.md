@@ -28,7 +28,7 @@ MASTER_SWAP 在 light remap 之上做单色红/灰替换：`#0b7f8e→#b7002e`�
 
 ### 页眉 mhead（top:41px, h:67px, 全宽, z:6, pointer-events:none）
 - `.mchip` 红色方块：left:37, top:0, 67×67, `#b7002e`, 白字斜体衬线 `italic 700 30px/67px Georgia`，居中 = 章节号（01/02/03/04，封面/章节前为空）。
-- `.mband` 灰色标题带：left:104（与 chip 右缘 37+67=104 齐平，**不留白缝**，否则底层红色 kicker 会从缝里漏出）, right:214（独立Logo）/ right:330（组合Logo）, h:67, `#f2f2f2`, flex 居中, padding 0 30px；内 `<b>` = **章节标题**（非页标题）`32px 700 #262626 letter-spacing:1px`。
+- `.mband` 灰色标题带：left:104（与 chip 右缘 37+67=104 齐平，**不留白缝**，否则底层红色 kicker 会从缝里漏出）, right:264（独立Logo，2026-10 起独立Logo为更宽的 489×120 基金标，留白须≥264 否则 Logo 压带）/ right:330（组合Logo）, h:67, `#f2f2f2`, flex 居中, padding 0 30px；内 `<b>` = **章节标题**（非页标题）`32px 700 #262626 letter-spacing:1px`。
 - `.mlogo` Logo：right:37；独立Logo top:7 h:53；组合Logo top:13 h:41。
 
 ### 页脚 mfoot（bottom:0, h:47px, `#f2f2f2`, flex 居中, padding 0 37px, z:6）
@@ -56,8 +56,9 @@ fragment 页可用可选字段 `"chip"` / `"ctitle"` 覆盖默认章节值（ass
 
 ## Logo 资源
 
-- `templates/master/logo_solo.png`（独立Logo，472×152）与 `logo_combo.png`（组合Logo，1200×176），base64 内联进 `.mlogo`。
-- `combo` 参数切换组合Logo并加宽 mband right 到 330。
+- `templates/master/logo_solo.png`（独立Logo = 天弘基金红/黑标，489×120，2026-10-15 起替换旧天弘技术标 472×152；旧标可从 git 历史或 canonical `master_assets/logo_solo.png.bak-pre-fundswap` 取回）与 `logo_combo.png`（组合Logo，1200×176），base64 内联进 `.mlogo`。
+- `combo` 参数切换组合Logo并加宽 mband right 到 330。组合标含天弘技术字样，若该品牌退役需同步退役 combo 变体。
+- 结尾页红底为整张位图 `closing_red.png`（白色「天弘基金｜天弘技术」组合标识烘焙在内）；换品牌须重构图而非换资产，2026-10-15 owner 拍板保留原样。
 
 ## 调用方式
 
@@ -79,7 +80,7 @@ python3 assemble.py light           # light 白底（回归）
 ## 坑
 
 - mband 若误填页标题会与 h1 重复（曾现 p4 双"业务差异化，技术通用化"）；务必用 ctitle。
-- 白底/母版下白色透明 Logo 会消失，topbar 与结尾页已换红黑标；mlogo 用独立/组合红标 PNG。
+- 白底/母版下白色透明 Logo 会消失，topbar 与结尾页已换红黑标；mlogo 独立槽用天弘基金红/黑标 PNG、组合槽用组合红标 PNG。换更宽的标时须同步加宽 mband right（214→264 的先例），否则 Logo 压灰带。
 - `#stage:has(...)` 依赖 :has()，现代 Chrome/Safari 支持；旧浏览器降级为 chrome 常显（可接受）。
 - MASTER_SWAP 作用于 final（含 remap 后 shell），顺序在 light remap 之后，勿颠倒。
 
