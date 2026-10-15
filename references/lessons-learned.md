@@ -1,4 +1,4 @@
-# lessons-learned（tianhong-html-deck 增强版踩坑记录）
+# lessons-learned（th-html-deck 增强版踩坑记录）
 
 > 只记录坑与边界，不改 SKILL.md 主文档。功能说明见 enhancements-v3.md。
 

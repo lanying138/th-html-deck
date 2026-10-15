@@ -1,4 +1,4 @@
-/* ==== tianhong-html-deck : native architecture-diagram component library ====
+/* ==== th-html-deck : native architecture-diagram component library ====
    Paste into the deck's EXTRA_CSS (shell.html holds house style; this block is
    added per-project by the assembler). Dark-theme tuned (uses --cyan/--gold/--muted).
    Components: .arch .arow .apanel .ptitle .asub .agrid .chip .lrow .rail .fnode .farr .band .note

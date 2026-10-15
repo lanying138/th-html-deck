@@ -1,5 +1,5 @@
 ---
-name: tianhong-html-deck
+name: th-html-deck
 description: Builds and edits 天弘-style fullscreen single-file HTML presentation decks (cool fintech dark style by default, plus white theme) from fragment JSON, redraws architecture diagrams natively in HTML/CSS instead of recolored bitmaps, runs visual QA via headless Chrome/CDP, and exports print-faithful PDF. Use when converting PPT/reports into web decks, redrawing architecture/流程图 pages, editing divider pages, adding a white version, or exporting deck PDFs.
 version: 2.1.0
 enabled_at: 1790218528144

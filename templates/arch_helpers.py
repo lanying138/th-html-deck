@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Builder helpers for native HTML/CSS architecture diagrams (tianhong-html-deck).
+"""Builder helpers for native HTML/CSS architecture diagrams (th-html-deck).
 Emit body HTML using the component classes in templates/arch_lib.css.
 Copy these functions into the project's build_bodies.py and compose per-page specs."""
 

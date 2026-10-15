@@ -1,6 +1,6 @@
 # v3 增强特性：动画系统 · 演讲者模式 · 逐字稿
 
-本文档记录从 html-ppt 技能融合进 tianhong-html-deck 的三项增强。所有改动**向后兼容**：
+本文档记录从 html-ppt 技能融合进 th-html-deck 的三项增强。所有改动**向后兼容**：
 不含 `notes` 字段的旧 fragment JSON、不加 `data-anim` 的旧 body，构建结果与 v2 完全一致。
 
 ## 1. CSS 入场动画系统（data-anim）
