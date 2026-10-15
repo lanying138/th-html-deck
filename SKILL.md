@@ -17,8 +17,8 @@ End-to-end recipe for producing a fullscreen, offline, single-file HTML deck in 
 
 ## Canonical house project (copy as starter)
 A complete working project lives at:
-`/Users/guobin/.qoderwork/workspace/mu3udn5g0ld8tvy6`
-It contains the house `shell.html` (all CSS/JS), `assemble.py`, `audit_html.py`, fragment JSONs (`main/research/wealth/ai_slides.json`), QA scripts, and `outputs/`. For a NEW material, copy `shell.html + assemble.py + audit_html.py + qa scripts` into the new workspace and swap the fragment JSONs + source list. Do NOT rebuild the shell from scratch — it encodes the house style and the light-theme remap asserts. A second worked example with the v2 native-diagram pipeline (8-page deck, per-page `build_bodies.py` specs + `assemble8.py` EXTRA_CSS injection) is at `/Users/guobin/.qoderwork/workspace/mu68b0rv3ayrtzk6/work`.
+`~/.qoderwork/workspace/mu3udn5g0ld8tvy6`
+It contains the house `shell.html` (all CSS/JS), `assemble.py`, `audit_html.py`, fragment JSONs (`main/research/wealth/ai_slides.json`), QA scripts, and `outputs/`. For a NEW material, copy `shell.html + assemble.py + audit_html.py + qa scripts` into the new workspace and swap the fragment JSONs + source list. Do NOT rebuild the shell from scratch — it encodes the house style and the light-theme remap asserts. A second worked example with the v2 native-diagram pipeline (8-page deck, per-page `build_bodies.py` specs + `assemble8.py` EXTRA_CSS injection) is at `~/.qoderwork/workspace/mu68b0rv3ayrtzk6/work`.
 
 ## Architecture
 - `shell.html` — ALL css/js (stage, slides, nav, dialogs, print rules, theme vars, house component classes). assemble.py only stitches; it does not hold CSS.
@@ -140,7 +140,7 @@ QA ops:
 Redesign workflow (owner-mandated):
 - Draft first: PIL 1920×1080 wireframe (PingFang.ttc idx0/idx1) with REAL screenshots pasted → present_files → AskUserQuestion BEFORE implementing; if the user interrupts with "重新让我选择下", re-issue AskUserQuestion with the built screenshot attached.
 - Redesigning an existing page: keep the ORIGINAL punchy copy and quantified stats verbatim (a rewrite that dropped them was vetoed: "保留原版文字…有效果量化数字"); compress text left, images right as 示意; strong block design (16px-radius blocks, per-workflow accent color).
-- Delivery discipline: ship ONLY 母版版.html per round to /Users/guobin/Downloads/汇报Fintech/; never report "delivered" before running assemble + cp + ls-verify (past failure: user asked "怎么没有看到第46页" because a rebuild was skipped).
+- Delivery discipline: ship ONLY 母版版.html per round to ~/Downloads/汇报Fintech/; never report "delivered" before running assemble + cp + ls-verify (past failure: user asked "怎么没有看到第46页" because a rebuild was skipped).
 
 ## Bundled templates
 - `templates/arch_lib.css` — native architecture-diagram component library (arch/arow/apanel/chip/lrow/rail/fnode/band/note + loose/mid density tiers + spread/rowfill/chip.t fill modifiers). Paste into project EXTRA_CSS.
